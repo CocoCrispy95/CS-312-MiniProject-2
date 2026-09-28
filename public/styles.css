@@ -1,0 +1,101 @@
+* { box-sizing: border-box; }
+
+html, body { height: 100%; margin: 0; }
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: "Press Start 2P", "Courier New", monospace;
+  line-height: 1.7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  min-height: 100%;
+}
+
+/* Wall of characters behind the box */
+.wall {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: center;
+  overflow: hidden;
+  opacity: 0.22;
+  pointer-events: none;
+}
+.wall img {
+  width: 96px;
+  height: 96px;
+  image-rendering: pixelated;
+  object-fit: contain;
+}
+
+/* Text box */
+.box {
+  position: relative;
+  width: 100%;
+  max-width: 34rem;
+  padding: 2rem 1.5rem;
+  background: #000;
+  border: 4px solid #fff;
+  outline: 4px solid #000;
+  text-align: center;
+}
+
+h1 { font-size: 1.1rem; margin: 0 0 1rem; line-height: 1.5; }
+.name { text-transform: capitalize; font-size: 1.4rem; margin: 0.5rem 0; }
+.small { font-size: 0.65rem; margin: 0 0 1.5rem; color: #ccc; }
+.trait { font-size: 0.7rem; margin: 1rem 0 1.5rem; }
+
+.art { width: 200px; max-width: 60%; height: auto; }
+
+.types { margin: 0; }
+.types span {
+  display: inline-block;
+  margin: 0.2rem;
+  padding: 0.3rem 0.6rem;
+  border: 2px solid #fff;
+  font-size: 0.6rem;
+  text-transform: capitalize;
+}
+
+input, .button {
+  display: block;
+  width: 100%;
+  font: inherit;
+  font-size: 0.75rem;
+  padding: 0.9rem;
+  color: #fff;
+  background: #000;
+  border: 3px solid #fff;
+  border-radius: 0;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+input { margin-bottom: 1rem; }
+input::placeholder { color: #888; }
+.button:hover { background: #fff; color: #000; }
+input:focus-visible, .button:focus-visible { outline: 3px solid #ff0; outline-offset: 3px; }
+
+.error {
+  font-size: 0.65rem;
+  color: #ff6b6b;
+  border: 2px solid #ff6b6b;
+  padding: 0.75rem;
+  margin: 0 0 1rem;
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .wall img { width: 64px; height: 64px; }
+  h1 { font-size: 0.9rem; }
+  .name { font-size: 1.1rem; }
+}

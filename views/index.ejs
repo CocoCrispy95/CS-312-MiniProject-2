@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Which Pokemon are you?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="wall" aria-hidden="true">
+    <% for (let i = 0; i < 6; i++) { backgroundIds.forEach(id => { %>
+      <img src="<%= spriteUrl(id) %>" alt="" loading="lazy">
+    <% }) } %>
+  </div>
+
+  <main class="box">
+    <% if (result) { %>
+      <p class="small"><%= result.firstName %>, your name feels like age <%= result.age %>.<br>You are <%= result.label %>:</p>
+      <img class="art" src="<%= result.image %>" alt="<%= result.character %>">
+      <h1 class="name"><%= result.character %></h1>
+      <p class="types">
+        <% result.types.forEach(t => { %><span><%= t %></span><% }) %>
+      </p>
+      <p class="trait"><%= result.trait %></p>
+      <a class="button" href="/">Try another name</a>
+    <% } else { %>
+      <h1>Which Pokemon are you?</h1>
+      <p class="small">Type your first name to find out.</p>
+
+      <% if (error) { %><p class="error" role="alert"><%= error %></p><% } %>
+
+      <form action="/reveal" method="POST">
+        <label for="name" class="sr-only">First name</label>
+        <input id="name" name="name" type="text" value="<%= name %>"
+               placeholder="Your first name" maxlength="30" required autocomplete="given-name">
+        <button type="submit" class="button">Find my Pokemon</button>
+      </form>
+    <% } %>
+  </main>
+</body>
+</html>
